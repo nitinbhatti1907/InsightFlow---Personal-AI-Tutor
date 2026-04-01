@@ -117,9 +117,8 @@ export default function ActivityLogPanel({ learnerOverview }) {
       ) : (
         <>
           <div
-            className={`mt-6 space-y-4 ${
-              showAll ? 'max-h-[560px] overflow-y-auto pr-2' : ''
-            }`}
+            className={`mt-6 space-y-4 ${showAll ? 'max-h-[560px] overflow-y-auto pr-2' : ''
+              }`}
           >
             {visibleActivities.map((activity, index) => {
               const theme = getActivityTheme(activity.activity_type);
@@ -167,7 +166,16 @@ export default function ActivityLogPanel({ learnerOverview }) {
                   <div className="mt-5 flex items-center justify-between gap-4">
                     <p className="text-sm font-semibold tracking-[0.12em] text-slate-400">
                       {activity.created_at
-                        ? new Date(activity.created_at).toLocaleString()
+                        ? new Date(activity.created_at).toLocaleString('en-CA', {
+                          timeZone: 'America/Toronto',
+                          year: 'numeric',
+                          month: 'numeric',
+                          day: 'numeric',
+                          hour: 'numeric',
+                          minute: '2-digit',
+                          second: '2-digit',
+                          hour12: true,
+                        })
                         : 'Recently'}
                     </p>
 
